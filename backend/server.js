@@ -1,16 +1,17 @@
 const express = require('express');
 const db = require('./db/config');
 const cors = require('cors');
-const sesstion = require('express-session');
+const session = require('express-session');
 const app = express();
-
+const notesRoutes = require('./routes/notes');
+const authRoutes = require('./routes/auth');
 
 app.use(cors({
     origin: 'http://localhost:5173',
     credentials: true
 }));
 
-app.use(sesstion({
+app.use(session({
     secret: 'secret',
     resave: false,
     saveUninitialized: true,
@@ -18,7 +19,8 @@ app.use(sesstion({
 }))
 app.use(express.json());
 
-app.use('/api', require('./router'));
+app.use('/api', notesRoutes);
+app.use('/api', authRoutes);
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
