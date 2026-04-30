@@ -34,23 +34,27 @@ const useAuthStore = defineStore('auth', () => {
         }
     }
 
-    const me = async () => {
+const me = async () => {
+    try {
         const response = await fetch('http://localhost:3000/api/me', {
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             credentials: 'include'
         });
 
         if (response.ok) {
             const data = await response.json();
             user.value = data.user;
-        }else {
+        } else {
             user.value = null;
         }
+    } catch (e) {
+        user.value = null;
+        console.warn('Could not reach server:', e.message);
+    } finally {
         checked.value = true;
     }
+}
 
     const logout = async () => {
         const response = await fetch('http://localhost:3000/api/logout', {

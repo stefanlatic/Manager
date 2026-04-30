@@ -2,7 +2,7 @@
   <h1>Welcome, {{ store.user?.username }}</h1>
   <p>{{ store.user?.email }}</p>
   <article>
-    <router-link to="/dashboard/notes">Notes</router-link>
+    <router-link to="/dashboard/notes">Notes ({{ notes.length }})</router-link>
     <router-link to="/dashboard/expenses">Expenses</router-link>
     <router-link to="/dashboard">Close</router-link>
   </article>
@@ -12,10 +12,13 @@
 </template>
 
 <script setup>
-import router from "@/router";
 import useAuthStore from "@/stores/authStore.js";
+import useNoteStore from "@/stores/noteStore";
+import { storeToRefs } from "pinia";
 const store = useAuthStore();
+const noteStore = useNoteStore();
 
+const { notes } = storeToRefs(noteStore);
 </script>
 
 <style lang="scss" scoped>

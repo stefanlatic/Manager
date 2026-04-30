@@ -11,20 +11,29 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
-import { useNoteStore } from '@/stores/noteStore'; 
+import { ref } from 'vue';
+import  useNoteStore  from '@/stores/noteStore'; 
+import { useRouter } from 'vue-router';
+
 
 const noteStore = useNoteStore();
+const router = useRouter();
 
-const newNote = reactive({  
+const newNote = ref({  
     title: '',
     content: ''
 });
 
 const submitNote = async () => {
-    await noteStore.addNote(newNote);
+    if (!newNote.value.title.trim() || !newNote.value.content.trim()) {
+        alert('Title and content are required');
+        return;
+    }
 
-    newNote.title = '';
-    newNote.content = '';
+    await noteStore.submitNote(newNote.value.title, newNote.value.content);
+
+    router.push('/dashboard/notes');
 };
 </script>
+<style scoped>
+</style>

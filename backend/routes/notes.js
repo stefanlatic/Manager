@@ -4,39 +4,32 @@ const Note = require('../models/Note');
 const router = express.Router();
 
 router.post('/notes', async (req, res) => {
-    try {
-        if (!req.session.userId) {
-            return res.status(401).json({ message: 'Not authenticated' });
+   
+        if (!req.session.user) {
+            res.status(401).json({ message: 'Not authenticated' });
+            return;
         }
-
+        try{
         const { title, content } = req.body;
 
-        const note = new Note({
-            title,
-            content,
-            user: req.session.userId
-        });
+        const note = await Note.create({title, content, user: req.session.user.id});      //userId or user i dont know
+        res.json(note);
 
-        await note.save();
-
-        res.status(201).json(note);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
+    } catch (e) {
+        res.status(400).json({ message: e.message });
     }
 });
 
 router.get('/notes', async (req, res) => {
-    try {
-        if (!req.session.userId) {
-            return res.status(401).json({ message: 'Not authenticated' });
+        if (!req.session.user) {
+             res.status(401).json({ message: 'Not authenticated' });
+            return;
         }
-
-        const notes = await Note.find({ user: req.session.userId })
-                                .sort({ createdAt: -1 });
-
-        res.json(notes);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
+          try {
+            const notes = await Note.find({user: req.session.user.id});
+            res.json({notes});
+    } catch (e) {
+        res.status(400).json({ message: e.message });
     }
 });
 

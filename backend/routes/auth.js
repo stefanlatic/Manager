@@ -22,7 +22,7 @@ router.post('/login', async (req, res) => {
         const user = await User.findOne({ email, password });
         if (user) {
             req.session.user = user;
-            req.session.userId = user._id;
+            req.session.userId = user.id;
             res.json({ user });
         } else {
             res.status(400).json({ message: 'Invalid credentials' });
