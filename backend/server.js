@@ -6,6 +6,7 @@ const app = express();
 const notesRoutes = require('./routes/notes');
 const authRoutes = require('./routes/auth');
 const expensesRoutes = require('./routes/expenses');
+const tasksRoutes = require('./routes/tasks');
 
 app.use(cors({
     origin: 'http://localhost:5173',
@@ -20,9 +21,11 @@ app.use(session({
 }))
 app.use(express.json());
 
-app.use('/api', notesRoutes);
 app.use('/api', authRoutes);
+app.use('/api', notesRoutes);
+app.use('/api', tasksRoutes);
 app.use('/api', expensesRoutes);
+
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');

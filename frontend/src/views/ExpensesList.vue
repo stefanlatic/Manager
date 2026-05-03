@@ -18,7 +18,7 @@ const grid = ref(false);
 const expensesStore = useExpensesStore();
 const { expenses } = storeToRefs(expensesStore);
 
-onMounted(async() => {
+onMounted(async() => { 
     if(expenses.value.length > 0){
         return;
     }

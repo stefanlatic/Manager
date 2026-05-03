@@ -11,6 +11,9 @@ import NotesList from "@/views/NotesList.vue";
 import AddNote from "@/views/AddNote.vue";
 import AddExpenses from '@/views/AddExpenses.vue'
 import ExpensesList from '@/views/ExpensesList.vue'
+import Tasks from '@/views/Tasks.vue'
+import TasksList from '@/views/TasksList.vue'
+import AddTask from '@/views/AddTasks.vue'
 
 
 const router = createRouter({
@@ -28,6 +31,10 @@ const router = createRouter({
           {path: 'expenses', component: Expenses, children:[
             {path: "", component: ExpensesList},
             {path: "add", component: AddExpenses},
+          ]},
+          {path: 'tasks', component: Tasks, children:[
+            {path: "", component: TasksList},
+            {path: "add", component: AddTask},
           ]},
         ]},
       ]}

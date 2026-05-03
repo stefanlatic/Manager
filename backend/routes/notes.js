@@ -12,7 +12,7 @@ router.post('/notes', async (req, res) => {
         try{
         const { title, content } = req.body;
 
-        const note = await Note.create({title, content, user: req.session.user.id});      //userId or user i dont know
+        const note = await Note.create({title, content, user: req.session.user.id});      
         res.json(note);
 
     } catch (e) {
