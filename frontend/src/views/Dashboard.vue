@@ -3,7 +3,7 @@
   <p>{{ store.user?.email }}</p>
   <article>
     <router-link to="/dashboard/notes">Notes ({{ notes.length }})</router-link>
-    <router-link to="/dashboard/expenses">Expenses</router-link>
+    <router-link to="/dashboard/expenses">Expenses (0)</router-link>
     <router-link to="/dashboard">Close</router-link>
   </article>
   <article>

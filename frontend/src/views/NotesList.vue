@@ -3,9 +3,7 @@
         <i @click="grid = !grid" class="bi bi-grid-3x2-gap-fill"></i>
     </div>
 
-    <div v-if="notes.length === 0">
-        No notes yet
-    </div>
+    <div v-if="notes.length === 0">No notes yet</div>
     <article :class="grid ? 'grid' : ''" class="notes-grid">
         <article class="note-card" v-for="note in notes" :key="note.id">
             <h3>{{ note.title }}</h3>

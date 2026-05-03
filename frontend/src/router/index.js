@@ -9,6 +9,9 @@ import Notes from "@/views/Notes.vue";
 import Expenses from "@/views/Expenses.vue";
 import NotesList from "@/views/NotesList.vue";
 import AddNote from "@/views/AddNote.vue";
+import AddExpenses from '@/views/AddExpenses.vue'
+import ExpensesList from '@/views/ExpensesList.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,7 +25,10 @@ const router = createRouter({
             {path: "", component: NotesList},
             {path: "add", component: AddNote},
           ]},
-          {path: 'expenses', component: Expenses},
+          {path: 'expenses', component: Expenses, children:[
+            {path: "", component: ExpensesList},
+            {path: "add", component: AddExpenses},
+          ]},
         ]},
       ]}
   ],
