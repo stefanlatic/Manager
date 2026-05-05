@@ -9,7 +9,7 @@ const useExpensesStore = defineStore('expenses', () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            credentials: 'include',
+            credentials: 'include', 
             body: JSON.stringify({ total, content })
         });
         if (!response.ok) {

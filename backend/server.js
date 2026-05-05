@@ -7,6 +7,8 @@ const notesRoutes = require('./routes/notes');
 const authRoutes = require('./routes/auth');
 const expensesRoutes = require('./routes/expenses');
 const tasksRoutes = require('./routes/tasks');
+const habbitsRoutes = require('./routes/habbits');
+const remindersRoutes = require('./routes/reminders');
 
 app.use(cors({
     origin: 'http://localhost:5173',
@@ -25,6 +27,8 @@ app.use('/api', authRoutes);
 app.use('/api', notesRoutes);
 app.use('/api', tasksRoutes);
 app.use('/api', expensesRoutes);
+app.use('/api', habbitsRoutes);
+app.use('/api', remindersRoutes);
 
 
 app.listen(3000, () => {

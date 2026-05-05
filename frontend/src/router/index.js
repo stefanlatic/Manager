@@ -14,6 +14,12 @@ import ExpensesList from '@/views/ExpensesList.vue'
 import Tasks from '@/views/Tasks.vue'
 import TasksList from '@/views/TasksList.vue'
 import AddTask from '@/views/AddTasks.vue'
+import Habbits from '@/views/Habbits.vue'
+import HabbitsList from '@/views/HabbitsList.vue'
+import AddHabbit from '@/views/AddHabbit.vue'
+import Reminder from '@/views/Reminder.vue'
+import RemindersList from '@/views/RemindersList.vue'
+import AddReminder from '@/views/AddReminder.vue'
 
 
 const router = createRouter({
@@ -36,6 +42,14 @@ const router = createRouter({
             {path: "", component: TasksList},
             {path: "add", component: AddTask},
           ]},
+          {path: 'habbits', component: Habbits, children:[
+            {path: "", component: HabbitsList},
+            {path: "add", component: AddHabbit},
+          ]},
+          {path: 'reminders', component: Reminder, children:[
+            {path: "", component: RemindersList},
+            {path: "add", component: AddReminder},
+          ]}
         ]},
       ]}
   ],
