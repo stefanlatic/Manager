@@ -20,7 +20,9 @@ import AddHabbit from '@/views/AddHabbit.vue'
 import Reminder from '@/views/Reminder.vue'
 import RemindersList from '@/views/RemindersList.vue'
 import AddReminder from '@/views/AddReminder.vue'
-
+import Contacts from '@/views/Contacts.vue'
+import ContactsList from '@/views/ContactsList.vue'
+import AddContact from '@/views/AddContacts.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,7 +51,11 @@ const router = createRouter({
           {path: 'reminders', component: Reminder, children:[
             {path: "", component: RemindersList},
             {path: "add", component: AddReminder},
-          ]}
+          ]},
+          {path: 'contacts', component: Contacts, children:[
+            {path: "", component: ContactsList},
+            {path: "add", component: AddContact},
+          ]},
         ]},
       ]}
   ],

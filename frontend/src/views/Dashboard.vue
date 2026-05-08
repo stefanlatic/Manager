@@ -4,9 +4,10 @@
   <article>
     <router-link to="/dashboard/notes">Notes ({{ notes.length }})</router-link>
     <router-link to="/dashboard/tasks">Tasks ({{ tasks.length }})</router-link>
-    <router-link to="/dashboard/habbits">Habbits ({{ habbits.length }})</router-link>
+    <router-link to="/dashboard/habbits">Habbits</router-link>
     <router-link to="/dashboard/expenses">Budget ({{ expenses.length }})</router-link>
     <router-link to="/dashboard/reminders">Reminders ({{ reminders.length }})</router-link>
+    <router-link to="/dashboard/contacts">Contacts</router-link>
     <router-link to="/dashboard">Close</router-link>
   </article>
   <article>
@@ -21,6 +22,7 @@ import useTaskStore from "@/stores/tasksStore";
 import useExpensesStore from "@/stores/expensesStore";
 import useHabbitStore from "@/stores/habbitsStore";
 import useRemindersStore from "@/stores/remindersStore";
+import useContactsStore from "@/stores/contactsStore";
 import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
 
@@ -31,11 +33,13 @@ const expensesStore = useExpensesStore();
 const tasksStore = useTaskStore();
 const habbitsStore = useHabbitStore();
 const remindersStore = useRemindersStore();
+const contactsStore = useContactsStore();
 const { notes } = storeToRefs(noteStore);
 const { tasks } = storeToRefs(tasksStore);
 const { expenses } = storeToRefs(expensesStore);
 const { habbits } = storeToRefs(habbitsStore);
 const { reminders } = storeToRefs(remindersStore);
+const { contacts } = storeToRefs(contactsStore);
 
 onMounted(async () => {
     if (notes.value.length === 0) {
@@ -53,6 +57,9 @@ onMounted(async () => {
     if (reminders.value.length === 0) {
         await remindersStore.fetchReminders();
     }
+      if (contacts.value.length === 0) {
+          await contactsStore.fetchContacts();
+      }
 });
 
 </script>

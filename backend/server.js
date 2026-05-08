@@ -9,6 +9,8 @@ const expensesRoutes = require('./routes/expenses');
 const tasksRoutes = require('./routes/tasks');
 const habbitsRoutes = require('./routes/habbits');
 const remindersRoutes = require('./routes/reminders');
+const contactsRoutes = require('./routes/contacts');
+
 
 app.use(cors({
     origin: 'http://localhost:5173',
@@ -29,7 +31,7 @@ app.use('/api', tasksRoutes);
 app.use('/api', expensesRoutes);
 app.use('/api', habbitsRoutes);
 app.use('/api', remindersRoutes);
-
+app.use('/api', contactsRoutes);
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
