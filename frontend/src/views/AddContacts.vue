@@ -1,5 +1,4 @@
 <template>
-    <h1>Add new contact</h1>
     <form @submit.prevent="submitContact">
         <label for="name">Name</label>
         <input type="text" id="name" v-model="newContact.name">

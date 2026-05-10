@@ -1,5 +1,4 @@
 <template>
- <h1>Add New Habbit</h1>
     <form @submit.prevent="submitHabbit">
         <div>
             <label for="title">Title:</label>

@@ -1,13 +1,32 @@
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
 
-const habbitsSchema = new Schema({
-    title: {type: String, required: true},
-    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-}, 
-{ timestamps: true });  
+const habitItemSchema = new Schema({
+    title: { type: String, required: true },
+    completed: { type: Boolean, default: false }
+});
 
-const Habbits = mongoose.model('Habbits', habbitsSchema);
+const habitsSchema = new Schema({
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+
+    habits: [habitItemSchema],
+
+    refreshMode: {
+        type: String,
+        enum: ['daily', 'weekly', 'monthly'],
+        default: 'daily'
+    },
+
+    lastRefreshed: {
+        type: Date,
+        default: Date.now
+    }
+}, { timestamps: true });
+
+const Habbits = mongoose.model('Habbits', habitsSchema);
 
 module.exports = Habbits;

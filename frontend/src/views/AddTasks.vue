@@ -1,5 +1,4 @@
 <template>
- <h1>Add Task</h1>
  <form @submit.prevent="submitTask"> 
         <label for="title">Title</label>
         <input type="text" id="title" v-model="newTask.title"> 

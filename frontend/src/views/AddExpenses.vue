@@ -1,5 +1,4 @@
 <template>
- <h1>Add Expense</h1>
  <form @submit.prevent="submitExpense"> 
         <label for="total">Total</label>
         <input type="number" id="total" v-model="newExpense.total"> 

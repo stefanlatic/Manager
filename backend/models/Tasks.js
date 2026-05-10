@@ -1,15 +1,41 @@
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
 
+const taskSchema = new Schema({
+    title: { type: String, required: true },
+    description: { type: String, default: '' },
+    completed: { type: Boolean, default: false }
+});
+
+const archivedTaskSchema = new Schema({
+    title: { type: String, required: true },
+    completed: { type: Boolean, default: false }
+});
+
 const tasksSchema = new Schema({
-    title: {type: String, required: true},
-    description: { type: String, required: true},
-    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-}, 
-{ timestamps: true });
+    user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 
+    title: { type: String, default: 'My Tasks' },
 
-const Tasks = mongoose.model('Tasks', tasksSchema);
+    tasks: [taskSchema],
 
-module.exports = Tasks;
+    refreshMode: {
+        type: String,
+        enum: ['daily', 'weekly', 'monthly', 'never'],
+        default: 'never'
+    },
+
+    lastRefreshed: {
+        type: Date,
+        default: Date.now
+    },
+
+    archivedLists: [{
+        savedAt: { type: Date, default: Date.now },
+        tasks: [archivedTaskSchema],
+        completed: Number,
+        total: Number
+    }]
+}, { timestamps: true });
+
+module.exports = mongoose.model('Tasks', tasksSchema);

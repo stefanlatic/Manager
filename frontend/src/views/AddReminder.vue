@@ -1,5 +1,4 @@
 <template>
- <h1>Add Reminder</h1>
 <form @submit.prevent="submitReminder"> 
         <label for="title">Title</label>
         <input type="text" id="title" v-model="newReminder.title"> 

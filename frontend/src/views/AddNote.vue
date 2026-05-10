@@ -1,6 +1,4 @@
 <template>
-    <h1>Add New Note</h1>
-
     <form @submit.prevent="submitNote"> 
         <label for="title">Title</label>
         <input type="text" id="title" v-model="newNote.title"> 
