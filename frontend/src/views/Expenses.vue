@@ -1,5 +1,5 @@
 <template>
-    <h1>Expenses</h1>
+    <h1>Budget Manager</h1>
     <router-link to="/dashboard/expenses">All expenses</router-link>
    <router-link to="/dashboard/expenses/add">Add new expense</router-link>
    <router-view></router-view>

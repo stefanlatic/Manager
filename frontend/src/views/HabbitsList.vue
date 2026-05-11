@@ -127,7 +127,8 @@ onMounted(async () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    padding: 0.5rem 0 1rem;
+    gap: 10px;
 }
 
 .count-label {
@@ -138,10 +139,15 @@ onMounted(async () => {
 .refresh-select {
     background: #111;
     border: 1px solid #2a2a2a;
-    color: #ccc;
-    padding: 6px 10px;
     border-radius: 8px;
+    color: #888;
+    font-size: 13px;
+    padding: 6px 10px;
+    cursor: pointer;
+    outline: none;
+    width: auto;        /* ← stops it stretching full width */
 }
+.refresh-select:hover { border-color: #444; color: #ccc; }
 
 .habbits-list {
     display: flex;
@@ -153,69 +159,78 @@ onMounted(async () => {
     background: #111;
     border: 1px solid #2a2a2a;
     border-radius: 12px;
-    padding: 12px;
+    padding: 0.85rem 1.1rem;
     display: flex;
     align-items: center;
     gap: 12px;
+    transition: opacity 0.2s;
 }
-
-.habbit-card.done {
-    opacity: 0.5;
-}
-
-.habbit-title {
-    flex: 1;
-}
+.habbit-card.done { opacity: 0.5; }
 
 .checkbox {
     width: 18px;
     height: 18px;
+    min-width: 18px;
     accent-color: #1D9E75;
-}
-
-.actions {
-    display: flex;
-    gap: 6px;
-}
-
-.icon-btn {
-    border: 1px solid #2a2a2a;
-    background: none;
-    color: #888;
-    width: 28px;
-    height: 28px;
-    border-radius: 6px;
     cursor: pointer;
 }
+
+.habbit-title {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+}
+.habbit-card.done .habbit-title {
+    text-decoration: line-through;
+    color: #555;
+}
+
+.actions { display: flex; gap: 6px; }
+
+.icon-btn {
+    background: none;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 13px;
+    color: #888;
+    transition: all 0.15s;
+}
+.icon-btn.edit:hover  { background: #1a2a1f; border-color: #1D9E75; color: #1D9E75; }
+.icon-btn.delete:hover { background: #2a1a1a; border-color: #993C1D; color: #F0997B; }
 
 .edit-input {
     flex: 1;
     background: #1a1a1a;
     border: 1px solid #333;
-    color: white;
-    padding: 8px;
     border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    padding: 6px 10px;
+    outline: none;
 }
+.edit-input:focus { border-color: #1D9E75; }
 
-.edit-actions {
-    display: flex;
-    gap: 8px;
-}
+.edit-actions { display: flex; gap: 8px; }
 
 .action-btn {
-    border: 1px solid #2a2a2a;
     background: none;
-    color: #ccc;
-    padding: 6px 12px;
+    border: 1px solid #2a2a2a;
     border-radius: 8px;
+    color: #ccc;
+    font-size: 13px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: background 0.15s;
 }
+.action-btn:hover { background: #1a1a1a; border-color: #444; }
+.action-btn.secondary { color: #666; }
 
-.secondary {
-    color: #666;
-}
-
-.empty {
-    color: #777;
-    padding: 1rem 0;
-}
+.empty { color: #888; font-size: 14px; padding: 1rem 0; }
 </style>

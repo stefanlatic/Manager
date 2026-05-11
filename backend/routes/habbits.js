@@ -44,7 +44,7 @@ function shouldRefresh(list) {
 router.get('/habbits', async (req, res) => {
     if (!auth(req, res)) return;
     try {
-        const list = await getUserHabbits(req.session.user._id);
+        const list = await getUserHabbits(req.session.user.id);
 
         if (shouldRefresh(list)) {
             list.habits.forEach(h => h.completed = false);
@@ -64,7 +64,7 @@ router.get('/habbits', async (req, res) => {
 //POST add
 router.post('/habbits', async (req, res) => {
      if (!auth(req, res)) return;
-    const list = await getUserHabbits(req.session.user._id);
+    const list = await getUserHabbits(req.session.user.id);
 
     list.habits.push({
         title: req.body.title
@@ -78,7 +78,7 @@ router.post('/habbits', async (req, res) => {
 //refresh mode
 router.patch('/habbits/refresh-mode', async (req, res) => {
     if (!auth(req, res)) return;
-    const list = await getUserHabbits(req.session.user._id);
+    const list = await getUserHabbits(req.session.user.id);
 
     list.refreshMode = req.body.refreshMode;
 
@@ -92,7 +92,7 @@ router.patch('/habbits/refresh-mode', async (req, res) => {
 //PATCH toggle/edit
 router.patch('/habbits/:id', async (req, res) => {
         if (!auth(req, res)) return;
-    const list = await getUserHabbits(req.session.user._id);
+    const list = await getUserHabbits(req.session.user.id);
 
     const habit = list.habits.id(req.params.id);
 
@@ -115,7 +115,7 @@ router.patch('/habbits/:id', async (req, res) => {
 //DELETE
 router.delete('/habbits/:id', async (req, res) => {
     if (!auth(req, res)) return;
-    const list = await getUserHabbits(req.session.user._id);
+    const list = await getUserHabbits(req.session.user.id);
 
     list.habits.pull({ _id: req.params.id });
 
